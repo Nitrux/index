@@ -12,13 +12,12 @@ Build-Depends: cmake,
                libkf5notifications-dev (>= 5.24.0~),
                libkf5service-dev (>= 5.24.0~),
                libkf5syntaxhighlighting-dev,
-               libmauikitfilebrowsing-dev,
                libqt5svg5-dev,
                mauikit-dev,
+               libmauikitfilebrowsing-dev,
                qtbase5-dev (>= 5.5.0~),
                qtdeclarative5-dev,
-               qtquickcontrols2-5-dev,
-               qtwebengine5-dev
+               qtquickcontrols2-5-dev
 Standards-Version: 4.2.1
 Homepage: https://github.com/maui-project/index
 Vcs-Git: https://invent.kde.org/neon/neon-packaging/index-fm.git
@@ -27,8 +26,11 @@ Maintainer: Neon CI <neon@kde.org>
 
 Package: index
 Architecture: any
-Depends: qml-module-org-kde-mauikit, ${misc:Depends}, ${shlibs:Depends}
-Description: Maui File manager
+Depends: qml-module-org-kde-mauikit,
+         qml-module-qt-labs-platform,
+         ${misc:Depends},
+         ${shlibs:Depends}
+Description: Maui File manager.
  Index is a file manager that works on desktops, Android and Plasma Mobile.
  Index lets you browse your system files and applications and preview
  your music, text, image and video files and share them with external applications
