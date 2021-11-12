@@ -61,7 +61,7 @@ rm -rf index-fm/{.vscode,android_files,macos_files,windows_files,ios_files,scree
 
 ### Compile Source
 
-mkdir -p mauikit-filebrowsing/build && cd mauikit-filebrowsing/build
+mkdir -p index-fm/build && cd index-fm/build
 
 cmake \
 	-DCMAKE_INSTALL_PREFIX=/usr \
