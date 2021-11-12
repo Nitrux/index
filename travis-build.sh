@@ -102,7 +102,7 @@ checkinstall -D -y \
 	--pkggroup=lib \
 	--pkgsource=index-fm \
 	--pakdir=../.. \
-	--maintainer="Uri Herrera <uri_herrera@nxos.org>" \
+	--maintainer=uri_herrera@nxos.org \
 	--provides=index \
 	--requires="libc6,libkf5archive5,libkf5configcore5,libkf5coreaddons5,libkf5i18n5,libkf5kiocore5,libkf5service5,mauikit \(\>= 2.1.0\),mauikit-filebrowsing \(\>= 2.1.0\),libqt5core5a,libqt5gui5,libqt5qml5,libqt5widgets5,libstdc++6,qml-module-qt-labs-platform" \
 	--nodoc \
