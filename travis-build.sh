@@ -47,8 +47,7 @@ DEBIAN_FRONTEND=noninteractive apt -qq -yy install --no-install-recommends \
 	libkf5service-dev \
 	libkf5syntaxhighlighting-dev \
 	libqt5svg5-dev \
-	mauikit-dev \
-	libmauikitfilebrowsing-dev \
+	mauikit \
 	qtbase5-dev \
 	qtdeclarative5-dev \
 	qtquickcontrols2-5-dev
