@@ -2,39 +2,111 @@
 
 set -x
 
-apt -qq update
-apt -qq -yy install equivs curl git wget gnupg2
+### Install Build Tools #1
 
-### FIXME - the container mauikit/ubuntu-18.04-amd64 does have the neon repo but for some idiotic reason it isn't working here
+DEBIAN_FRONTEND=noninteractive apt -qq update
+DEBIAN_FRONTEND=noninteractive apt -qq -yy install --no-install-recommends \
+	appstream \
+	automake \
+	autotools-dev \
+	build-essential \
+	checkinstall \
+	cmake \
+	curl \
+	devscripts \
+	equivs \
+	extra-cmake-modules \
+	gettext \
+	git \
+	gnupg2 \
+	lintian \
+	wget
+
+### Add Neon Sources
 
 wget -qO /etc/apt/sources.list.d/neon-user-repo.list https://raw.githubusercontent.com/Nitrux/iso-tool/development/configs/files/sources.list.neon.user
 
-apt-key adv --keyserver keyserver.ubuntu.com --recv-keys \
+DEBIAN_FRONTEND=noninteractive apt-key adv --keyserver keyserver.ubuntu.com --recv-keys \
 	55751E5D > /dev/null
 
-curl -L https://packagecloud.io/nitrux/repo/gpgkey | apt-key add -;
+curl -L https://packagecloud.io/nitrux/testing/gpgkey | apt-key add -;
 
-wget -qO /etc/apt/sources.list.d/nitrux-repo.list https://raw.githubusercontent.com/Nitrux/iso-tool/development/configs/files/sources.list.nitrux
+wget -qO /etc/apt/sources.list.d/nitrux-testing-repo.list https://raw.githubusercontent.com/Nitrux/iso-tool/development/configs/files/sources.list.nitrux.testing
 
-apt -qq update
+DEBIAN_FRONTEND=noninteractive apt -qq update
 
-### Install Dependencies
+### Install Package Build Dependencies #2
 
-DEBIAN_FRONTEND=noninteractive apt -qq -yy install --no-install-recommends devscripts debhelper gettext lintian build-essential automake autotools-dev cmake extra-cmake-modules appstream qml-module-qtquick-controls2 qml-module-qtquick-shapes qml-module-qtgraphicaleffects mauikit-dev
-
-mk-build-deps -i -t "apt-get --yes" -r
+DEBIAN_FRONTEND=noninteractive apt -qq -yy install --no-install-recommends \
+	libkf5archive-dev \
+	libkf5config-dev \
+	libkf5coreaddons-dev \
+	libkf5i18n-dev \
+	libkf5kio-dev \
+	libkf5notifications-dev \
+	libkf5service-dev \
+	libkf5syntaxhighlighting-dev \
+	libqt5svg5-dev \
+	mauikit-dev \
+	libmauikitfilebrowsing-dev \
+	qtbase5-dev \
+	qtdeclarative5-dev \
+	qtquickcontrols2-5-dev
 
 ### Clone repo.
 
 git clone --single-branch --branch v2.1 https://invent.kde.org/maui/index-fm.git
 
-mv index-fm/* .
+rm -rf index-fm/{.vscode,android_files,macos_files,windows_files,ios_files,screenshots,LICENSES,README.md}
 
-rm -rf index-fm .vscode android_files macos_files windows_files ios_files screenshots LICENSES README.md
+### Compile Source
 
-### Build Deb
+mkdir -p mauikit-filebrowsing/build && cd mauikit-filebrowsing/build
 
-mkdir source
-mv ./* source/ # Hack for debuild
-cd source
-debuild -b -uc -us
+cmake \
+	-DCMAKE_INSTALL_PREFIX=/usr \
+	-DENABLE_BSYMBOLICFUNCTIONS=OFF \
+	-DQUICK_COMPILER=ON \
+	-DCMAKE_BUILD_TYPE=Release \
+	-DCMAKE_INSTALL_SYSCONFDIR=/etc \
+	-DCMAKE_INSTALL_LOCALSTATEDIR=/var \
+	-DCMAKE_EXPORT_NO_PACKAGE_REGISTRY=ON \
+	-DCMAKE_FIND_PACKAGE_NO_PACKAGE_REGISTRY=ON \
+	-DCMAKE_INSTALL_RUNSTATEDIR=/run "-GUnix Makefiles" \
+	-DCMAKE_VERBOSE_MAKEFILE=ON \
+	-DCMAKE_INSTALL_LIBDIR=lib/x86_64-linux-gnu ..
+
+make
+
+### Run checkinstall and Build Debian Package
+### DO NOT USE debuild, screw it
+
+>> description-pak printf "%s\n" \
+	'MauiKit File Manager.' \
+	'' \
+	'Index is a file manager that works on desktops, Android and Plasma Mobile.' \
+	'' \
+	'Index lets you browse your system files and applications and preview' \
+	'your music, text, image and video files and share them with external applications' \
+	'' \
+	''
+
+checkinstall -D -y \
+	--install=no \
+	--fstrans=yes \
+	--pkgname=index \
+	--pkgversion=2.1.0 \
+	--pkgarch=amd64 \
+	--pkgrelease="1" \
+	--pkglicense=LGPL-3 \
+	--pkggroup=lib \
+	--pkgsource=index-fm \
+	--pakdir=../.. \
+	--maintainer="Uri Herrera <uri_herrera@nxos.org>" \
+	--provides=index \
+	--requires=libc6,libkf5archive5,libkf5configcore5,libkf5coreaddons5,libkf5i18n5,libkf5kiocore5,libkf5service5,libmauikitfilebrowsing1 \(\>= 2.1.0\),libqt5core5a,libqt5gui5,libqt5qml5,libqt5widgets5,libstdc++6,qml-module-org-kde-mauikit \(\>= 2.1.0\),qml-module-qt-labs-platform \
+	--nodoc \
+	--strip=no \
+	--stripso=yes \
+	--reset-uids=yes \
+	--deldesc=yes
