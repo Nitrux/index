@@ -98,12 +98,12 @@ make
 checkinstall -D -y \
 	--install=no \
 	--fstrans=yes \
-	--pkgname=index \
+	--pkgname=index-git \
 	--pkgversion=2.1.1+git \
 	--pkgarch=amd64 \
 	--pkgrelease="1" \
 	--pkglicense=LGPL-3 \
-	--pkggroup=lib \
+	--pkggroup=utils \
 	--pkgsource=index-fm \
 	--pakdir=../.. \
 	--maintainer=uri_herrera@nxos.org \
