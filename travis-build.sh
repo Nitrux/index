@@ -59,7 +59,7 @@ DEBIAN_FRONTEND=noninteractive apt -qq -yy install --only-upgrade \
 
 ### Clone repo.
 
-git clone --single-branch --branch master https://invent.kde.org/maui/index-fm.git
+git clone --single-branch --branch v2.1 https://invent.kde.org/maui/index-fm.git
 
 rm -rf index-fm/{.vscode,android_files,macos_files,windows_files,ios_files,screenshots,LICENSES,README.md}
 
