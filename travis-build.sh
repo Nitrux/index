@@ -67,6 +67,10 @@ git clone --single-branch --branch master https://invent.kde.org/maui/index-fm.g
 
 rm -rf index-fm/{.vscode,android_files,macos_files,windows_files,ios_files,screenshots,LICENSES,README.md}
 
+#### Remove accentcolor property
+
+sed -i '27d' index-fm/src/main.qml
+
 ### Compile Source
 
 mkdir -p index-fm/build && cd index-fm/build
@@ -103,7 +107,7 @@ checkinstall -D -y \
 	--install=no \
 	--fstrans=yes \
 	--pkgname=index-git \
-	--pkgversion=2.1.2+git+2 \
+	--pkgversion=2.1.2+git+3 \
 	--pkgarch=amd64 \
 	--pkgrelease="1" \
 	--pkglicense=LGPL-3 \
