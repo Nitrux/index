@@ -107,7 +107,7 @@ checkinstall -D -y \
 	--install=no \
 	--fstrans=yes \
 	--pkgname=index-git \
-	--pkgversion=2.1.2+git+3 \
+	--pkgversion=2.1.2+git+4 \
 	--pkgarch=amd64 \
 	--pkgrelease="1" \
 	--pkglicense=LGPL-3 \
