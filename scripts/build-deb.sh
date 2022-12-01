@@ -49,6 +49,8 @@ cmake \
 
 make -j$(nproc)
 
+make install
+
 ### Run checkinstall and Build Debian Package
 
 >> description-pak printf "%s\n" \
