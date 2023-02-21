@@ -4,12 +4,12 @@ set -x
 
 ### Update sources
 
-wget -qO /etc/apt/sources.list.d/nitrux-main-compat-repo.list https://raw.githubusercontent.com/Nitrux/iso-tool/development/configs/files/sources/nitrux-repo.list
+wget -qO /etc/apt/sources.list.d/nitrux-depot.list https://raw.githubusercontent.com/Nitrux/iso-tool/legacy/configs/files/sources/sources.list.nitrux
 
-wget -qO /etc/apt/sources.list.d/nitrux-testing-repo.list https://raw.githubusercontent.com/Nitrux/iso-tool/development/configs/files/sources/nitrux-testing-repo.list
+wget -qO /etc/apt/sources.list.d/nitrux-testing.list https://raw.githubusercontent.com/Nitrux/iso-tool/legacy/configs/files/sources/sources.list.nitrux.testing
 
-curl -L https://packagecloud.io/nitrux/repo/gpgkey | apt-key add -;
-curl -L https://packagecloud.io/nitrux/compat/gpgkey | apt-key add -;
+curl -L https://packagecloud.io/nitrux/depot/gpgkey | apt-key add -;
+curl -L https://packagecloud.io/nitrux/unison/gpgkey | apt-key add -;
 curl -L https://packagecloud.io/nitrux/testing/gpgkey | apt-key add -;
 
 apt -qq update
@@ -76,7 +76,7 @@ checkinstall -D -y \
 	--pakdir=. \
 	--maintainer=uri_herrera@nxos.org \
 	--provides=index \
-	--requires="libc6,libkf5archive5,libkf5configcore5,libkf5coreaddons5,libkf5i18n5,libkf5kiocore5,libkf5service5,mauikit-git \(\>= 2.2.1+git\),mauikit-filebrowsing-git \(\>= 2.2.1+git\),libqt5core5a,libqt5gui5,libqt5qml5,libqt5widgets5,libstdc++6,qml-module-qt-labs-platform" \
+	--requires="libc6,libkf5archive5,libkf5configcore5,libkf5coreaddons5,libkf5i18n5,libkf5kiocore5,libkf5service5,mauikit-git \(\>= 2.2.2+git\),mauikit-filebrowsing-git \(\>= 2.2.2+git\),libqt5core5a,libqt5gui5,libqt5qml5,libqt5widgets5,libstdc++6,qml-module-qt-labs-platform" \
 	--nodoc \
 	--strip=no \
 	--stripso=yes \
