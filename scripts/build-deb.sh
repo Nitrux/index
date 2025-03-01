@@ -76,7 +76,7 @@ checkinstall -D -y \
 	--pakdir=. \
 	--maintainer=uri_herrera@nxos.org \
 	--provides=index \
-	--requires="libkf6kiofilewidgets6,libkf6kiogui6,libqt6multimedia6,libqt6multimediawidgets6,libqt6spatialaudio6,mauikit-archiver-git \(\>= 4.0.1\),mauikit-filebrowsing-git \(\>= 4.0.1\),mauikit-git \(\>= 4.0.1\),qml6-module-qtmultimedia,qml6-module-qtquick3d-spatialaudio" \
+	--requires="libkf6kiofilewidgets6,libkf6kiogui6,libqt6multimedia6,libqt6multimediawidgets6,libqt6spatialaudio6,mauikit-archiver-git \(\>= 4.0.1\),mauikit-filebrowsing-git \(\>= 4.0.1\),mauikit-git \(\>= 4.0.1\),qml6-module-qtcore,qml6-module-qtmultimedia,qml6-module-qtquick3d-spatialaudio" \
 	--nodoc \
 	--strip=no \
 	--stripso=yes \
