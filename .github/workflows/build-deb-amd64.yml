@@ -10,12 +10,10 @@ on:
       packageCloudRepo:
         description: 'Package Cloud Repo'
         required: true
-        default: 'testing'
+        default: 'mauikit'
         type: choice
         options:
-        - repo
-        - testing
-        - compat
+        - mauikit
       packageVersion:
         description: 'Package Version'
         required: true
@@ -23,10 +21,10 @@ on:
 
 jobs:
   build-deb:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
 
     container:
-      image: ubuntu:noble
+      image: debian:testing
       env:
         DEBIAN_FRONTEND: noninteractive
         PACKAGECLOUD_TOKEN: ${{ secrets.PACKAGECLOUD_TOKEN }}
@@ -38,7 +36,7 @@ jobs:
       - name: Install package cloud
         run: gem install package_cloud
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Install build dependencies
         run: ./scripts/install-build-deps.sh
 
@@ -49,7 +47,7 @@ jobs:
           INDEX_BRANCH: ${{ inputs.indexBranch }}
 
       - name: 'Upload Artifact'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: deb-package
           path: ./build/*.deb

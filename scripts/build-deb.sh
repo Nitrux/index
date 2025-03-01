@@ -4,14 +4,15 @@ set -x
 
 ### Update sources
 
-wget -qO /etc/apt/sources.list.d/nitrux-depot.list https://raw.githubusercontent.com/Nitrux/iso-tool/legacy/configs/files/sources/sources.list.nitrux
-wget -qO /etc/apt/sources.list.d/nitrux-testing.list https://raw.githubusercontent.com/Nitrux/iso-tool/legacy/configs/files/sources/sources.list.nitrux.testing
+mkdir -p /etc/apt/keyrings
 
-curl -L https://packagecloud.io/nitrux/depot/gpgkey | apt-key add -;
-curl -L https://packagecloud.io/nitrux/testing/gpgkey | apt-key add -;
-curl -L https://packagecloud.io/nitrux/unison/gpgkey | apt-key add -;
+curl -fsSL https://packagecloud.io/nitrux/mauikit/gpgkey | gpg --dearmor -o /etc/apt/keyrings/nitrux_mauikit-archive-keyring.gpg
 
-apt update
+cat <<EOF > /etc/apt/sources.list.d/nitrux-mauikit.list
+deb [signed-by=/etc/apt/keyrings/nitrux_mauikit-archive-keyring.gpg] https://packagecloud.io/nitrux/mauikit/debian/ trixie main
+EOF
+
+apt -q update
 
 ### Install Package Build Dependencies #2
 
@@ -75,7 +76,7 @@ checkinstall -D -y \
 	--pakdir=. \
 	--maintainer=uri_herrera@nxos.org \
 	--provides=index \
-	--requires="libc6,libkf5archive5,libkf5configcore5,libkf5coreaddons5,libkf5i18n5,libkf5kiocore5,libkf5service5,mauikit-git \(\>= 3.1.0+git\),mauikit-filebrowsing-git \(\>= 3.1.0+git\),libqt5core5a,libqt5gui5,libqt5qml5,libqt5widgets5,libstdc++6,qml-module-qt-labs-platform" \
+	--requires="mauikit-git \(\>= 4.0.1\),mauikit-filebrowsing-git \(\>= 4.0.1\)" \
 	--nodoc \
 	--strip=no \
 	--stripso=yes \
