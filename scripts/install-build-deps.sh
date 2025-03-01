@@ -31,6 +31,7 @@ BUILD_DEPS='
     qml-module-qtquick-shapes
     qt6-base-dev
     qt6-declarative-dev
+    qt6-multimedia-dev
 '
 
 $APT_COMMAND update -q
