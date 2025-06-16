@@ -10,7 +10,7 @@ on:
       packageCloudRepo:
         description: 'Package Cloud Repo'
         required: true
-        default: 'index'
+        default: 'mauikit'
         type: choice
         options:
         - index
