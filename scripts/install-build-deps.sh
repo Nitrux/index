@@ -88,6 +88,7 @@ $APT_COMMAND install -y - --no-install-recommends \
     libkf6i18n-dev \
     libkf6kio-dev \
     libkf6notifications-dev \
+    libkf6purpose-dev \
     lintian \
     qml-module-qtgraphicaleffects \
     qml-module-qtquick-controls2 \
