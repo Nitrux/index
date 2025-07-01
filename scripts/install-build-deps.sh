@@ -109,7 +109,7 @@ EOF
 
 $APT_COMMAND update -q
 $APT_COMMAND install -y - --no-install-recommends \
-	mauikit-filebrowsing \
-    mauikit-terminal \
+    mauikit-archiver \
     mauikit-documents \
-    mauikit-archiver
+    mauikit-filebrowsing \
+    mauikit-terminal 
