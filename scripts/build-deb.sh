@@ -34,15 +34,15 @@ git clone --depth 1 --branch "$INDEX_BRANCH" https://invent.kde.org/maui/index-f
 
 rm -rf index-fm/{.vscode,android_files,macos_files,windows_files,ios_files,screenshots,LICENSES,README.md}
 
-if ! grep -Eq 'find_package\(Qt.*REQUIRED COMPONENTS.*Qml' vvave/CMakeLists.txt; then
-  sed -i '/find_package(Qt.*REQUIRED COMPONENTS/ s/Core/& Qml/' vvave/CMakeLists.txt
+if ! grep -Eq 'find_package\(Qt.*REQUIRED COMPONENTS.*Qml' index/CMakeLists.txt; then
+  sed -i '/find_package(Qt.*REQUIRED COMPONENTS/ s/Core/& Qml/' index/CMakeLists.txt
 fi
 
-if grep -qE '^[[:space:]]*qt_policy\(SET QTP0004 NEW\)' vvave/CMakeLists.txt; then
+if grep -qE '^[[:space:]]*qt_policy\(SET QTP0004 NEW\)' index/CMakeLists.txt; then
   sed -i '/^[[:space:]]*qt_policy(SET QTP0004 NEW)/c\
 if(QT_VERSION VERSION_GREATER_EQUAL "6.8.0")\
   qt_policy(SET QTP0004 NEW)\
-endif()' vvave/CMakeLists.txt
+endif()' index/CMakeLists.txt
 fi
 
 
