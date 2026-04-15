@@ -60,9 +60,9 @@ $APT_COMMAND install -y - --no-install-recommends \
     libkf6kio-dev \
     libkf6notifications-dev \
     lintian \
-    qml-module-qtgraphicaleffects \
-    qml-module-qtquick-controls2 \
-    qml-module-qtquick-shapes \
+    qml6-module-qt5compat-graphicaleffects \
+    qml6-module-qtquick-controls \
+    qml6-module-qtquick-shapes \
     qt6-base-dev \
     qt6-declarative-dev \
     qt6-multimedia-dev
