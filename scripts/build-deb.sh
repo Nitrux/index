@@ -32,7 +32,7 @@ set -e
 
 git clone --depth 1 --branch "$INDEX_BRANCH" https://github.com/Nitrux/maui-index.git
 
-rm -rf index-fm/{.vscode,android_files,macos_files,windows_files,ios_files,screenshots,LICENSES,README.md}
+rm -rf maui-index/{.vscode,android_files,macos_files,windows_files,ios_files,screenshots,LICENSES,README.md}
 
 
 # -- Compile Source
@@ -53,7 +53,7 @@ cmake \
 	-DCMAKE_INSTALL_RUNSTATEDIR=/run "-GUnix Makefiles" \
 	-DCMAKE_VERBOSE_MAKEFILE=ON \
 	-DCMAKE_INSTALL_LIBDIR="/usr/lib/${HOST_MULTIARCH}" \
-	../index-fm/
+	../maui-index/
 
 make -j"$(nproc)"
 
@@ -81,7 +81,7 @@ checkinstall -D -y \
 	--pkgrelease="1" \
 	--pkglicense=LGPL-3 \
 	--pkggroup=utils \
-	--pkgsource=index-fm \
+	--pkgsource=maui-index \
 	--pakdir=. \
 	--maintainer=uri_herrera@nxos.org \
 	--provides=index \
