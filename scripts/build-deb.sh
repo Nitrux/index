@@ -30,7 +30,7 @@ set -e
 
 # -- Download Source
 
-git clone --depth 1 --branch "$INDEX_BRANCH" https://invent.kde.org/maui/index-fm.git
+git clone --depth 1 --branch "$INDEX_BRANCH" https://github.com/Nitrux/maui-index.git
 
 rm -rf index-fm/{.vscode,android_files,macos_files,windows_files,ios_files,screenshots,LICENSES,README.md}
 
