@@ -45,6 +45,12 @@ $APT_COMMAND install -y --no-install-recommends \
     automake \
     autotools-dev \
     build-essential \
+    qt6-wayland-dev \
+    qt6-svg-dev \
+    libxkbcommon-dev \
+    libxcb-shape0-dev \
+    libxcb-icccm4-dev \
+    libkf6windowsystem-dev \
     meson \
     ninja-build \
     pkg-config \
