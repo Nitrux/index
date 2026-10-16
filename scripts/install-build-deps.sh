@@ -70,6 +70,7 @@ $APT_COMMAND install -y --no-install-recommends \
     qml6-module-qtquick-controls \
     qml6-module-qtquick-shapes \
     qt6-base-dev \
+    qt6-5compat-dev \
     qt6-base-dev-tools \
     qt6-declarative-dev \
     qt6-multimedia-dev
