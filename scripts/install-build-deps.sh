@@ -65,6 +65,7 @@ $APT_COMMAND install -y --no-install-recommends \
     libkf6i18n-dev \
     libkf6kio-dev \
     libkf6notifications-dev \
+    libkf6syntaxhighlighting-dev \
     lintian \
     qml6-module-qt5compat-graphicaleffects \
     qml6-module-qtquick-controls \
