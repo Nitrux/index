@@ -69,6 +69,8 @@ $APT_COMMAND install -y --no-install-recommends \
     libkf6notifications-dev \
     libkf6pty-dev \
     libkf6syntaxhighlighting-dev \
+    libpoppler-dev \
+    libpoppler-qt6-dev \
     lintian \
     qml6-module-qt5compat-graphicaleffects \
     qml6-module-qtquick-controls \
@@ -77,7 +79,8 @@ $APT_COMMAND install -y --no-install-recommends \
     qt6-5compat-dev \
     qt6-base-dev-tools \
     qt6-declarative-dev \
-    qt6-multimedia-dev
+    qt6-multimedia-dev \
+    zlib1g-dev
 
 
 # -- Add package from our repository.
