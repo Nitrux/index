@@ -62,9 +62,12 @@ $APT_COMMAND install -y --no-install-recommends \
     gnupg2 \
     libkf6config-dev \
     libkf6coreaddons-dev \
+    libkf6filemetadata-dev \
+    libkf6iconthemes-dev \
     libkf6i18n-dev \
     libkf6kio-dev \
     libkf6notifications-dev \
+    libkf6pty-dev \
     libkf6syntaxhighlighting-dev \
     lintian \
     qml6-module-qt5compat-graphicaleffects \
