@@ -54,6 +54,7 @@ $APT_COMMAND install -y --no-install-recommends \
     cmake \
     extra-cmake-modules \
     pkg-config \
+    libsecret-1-dev \
     curl \
     devscripts \
     equivs \
