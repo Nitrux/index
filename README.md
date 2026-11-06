@@ -1,6 +1,6 @@
 # Index
 
-![](https://mauikit.org/wp-content/uploads/2018/12/maui_project_logo.png)
+![maui_logo_current](https://nxos.org/wp-content/uploads/2019/10/maui_project_logo-min.png)
 
 [![License: LGPL v3](https://img.shields.io/badge/License-LGPL%20v3-blue.svg)](https://www.gnu.org/licenses/lgpl-3.0)
 
